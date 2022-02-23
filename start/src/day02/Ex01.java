@@ -11,9 +11,15 @@ public class Ex01 {
 	 			String str = sc.nextLine();
 	 */
 	public static void main(String[] agrs) {
+		
 		Scanner sc = new Scanner(System.in);
+		
+		//메세지 출력
+		System.out.println("좋아하는 가수는? : ");
 		String str = sc.nextLine();
-		System.out.println("좋아하는 가수는? : " + );
+		System.out.println("당신이 입력한 가수는 [ " + str + " ] 입니다.");
+		
+		sc.close();
 	}
 
 }
