@@ -10,15 +10,28 @@ package day03.ex;
 public class Ex04 {
 	public static void main(String[] args) {
 		
-		int day = 365;
+		/*
+		 	< 할 일 >
+		 	데이터 변수에 기억
+		 	누적계산될 변수 만들고
+		 	날 수 구하고 -> 누적 변수에 계산해서 업데이트
+		 	시간 구하고 -> 누적 변수에 계산해서 업데이트
+		 	분 구하고 -> 누적 변수에 계산해서 업데이트
+		 	초 구하고
+		 	출력
+		 */
+		double total = 365.2426;
 		
-		int time = (int)(0.2426 * 24 * 60 * 60);
+		int day = (int)total;
+		double tmp = total - day;
+		
+		int time = (int)(tmp * 24 * 60 * 60);
 		
 		int second = time % 60;
-		time = time / 60;
+		time /= 60;
 		
 		int minute = time % 60;
-		time = time / 60;
+		time /= 60;
 		
 		int hour = time % 24;
 		
