@@ -40,8 +40,17 @@ public class Ex02 {
 		char ch = str.charAt(0);
 		
 		//판별 (판별결과는 변수에 담아서 처리)
-		char result = (ch < 'A' || (ch > 'Z' && ch < 'a') || ch > 'z') ? (ch) : 
-				((ch <= 'Z') ? ((char) (ch + ('a' - 'A'))) : ((char) (ch - ('a' - 'A'))));
+		//Method01
+//		char result = (ch < 'A' || (ch > 'Z' && ch < 'a') || ch > 'z') ? (ch) : 
+//				((ch <= 'Z') ? ((char) (ch + ('a' - 'A'))) : ((char) (ch - ('a' - 'A'))));
+		
+		//Method02
+		char result = '0';
+		if(ch >= 'A' && ch <= 'Z') {				//대문자일 때
+			result = (char)(ch + ('a' - 'A'));
+		} else if(ch >= 'a' && ch <= 'z') {			//소문자일 때
+			result = (char)(ch - ('a' - 'A'));
+		} else result = ch;							//특수문자일 때	
 		
 		//결과
 		System.out.println(result);

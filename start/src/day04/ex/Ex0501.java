@@ -1,20 +1,19 @@
 package day04.ex;
-
 /*
- 	문제 5)
- 	3자리 숫자(100 ~ 999)를 입력받아서
- 	이 숫자에 가장 가까운 100의 배수를 만들기 위해서는
- 	얼마가 필요한지 계산해서 출력해주는 프로그램을 작성하세요.
- 	(3항연산자사용)
- 	
- 		예) 241은 200에 가까우므로 41을 빼야한다.
- 			777은 800애 가까우므로 23을 더해야한다.
- 			0 ~ 50 => 0		51 ~ 99 => 100
- */
+	문제 5)
+	3자리 숫자(100 ~ 999)를 입력받아서
+	이 숫자에 가장 가까운 100의 배수를 만들기 위해서는
+	얼마가 필요한지 계산해서 출력해주는 프로그램을 작성하세요.
+	조건문 사용
+	
+		예) 241은 200에 가까우므로 41을 빼야한다.
+			777은 800애 가까우므로 23을 더해야한다.
+			0 ~ 50 => 0		51 ~ 99 => 100
+*/
+import javax.swing.JOptionPane;
 
-import javax.swing.*;
+public class Ex0501 {
 
-public class Ex05 {
 	public static void main(String[] args) {
 		//세자리 정수를 입력받는다.
 		String sno = JOptionPane.showInputDialog("세자리 정수 입력 :");
@@ -29,14 +28,18 @@ public class Ex05 {
 		
 		int hap = 0;
 		int result = 0;
+		String str = "0";
 		
-		hap = num > 50 ? 100 - num : num;
-		
-		//result = num > 50 ? no + hap : no - hap;
-		result = num > 50 ? (no / 100 + 1) * 100 : (no / 100) * 100;
-		
-		String str = num > 50 ? "더해줘야한다." : "빼줘야한다.";
-		
+		if(num > 50) {
+			hap = 100 - num;
+			result = no + hap;
+			str = "더해줘야한다.";
+			
+		} else {
+			hap = num;
+			result = no - hap;
+			str = "빼줘야한다.";
+		}
 		//출력
 		System.out.println("입력한 정수 " + no + "은(는) " + result
 				+ "에 가까우므로 " + hap + "을(를) " + str);

@@ -11,9 +11,18 @@ package day04.ex;
 
 public class Ex03 {
 	public static void main(String[] args) {
-		int num = (int)(Math.random() * 100 -1 + 1) + 1;
+		int num = (int)(Math.random() * 100 - 1 + 1) + 1;
 		
-		int soo = (num % 15 == 0) ? ((int)(num / 15)) : ((int)(num / 15) + 1);
+		//Method01
+//		int soo = (num % 15 == 0) ? (num / 15) : ((num / 15) + 1);
+		
+		//Method02
+		int soo = 0;
+		if(num % 15 == 0) {
+			soo = num / 15;
+		} else {
+			soo = (num / 15) + 1;
+		}
 		
 		System.out.println("게시물의 수는 " + num + " 개이므로, " 
 				+ "필요한 게시판의 페이지는 " + soo + " 페이지이다.");

@@ -25,6 +25,24 @@ public class Ex0201 {
 		//문자 추출
 		char ch = str.charAt(0);
 		
+		String result = "숫자나 알파벳을 입력해주세요!";
+		
+		if (ch >= 'A' && ch <= 'Z') {
+			result = "입력된 문자 " + ch + "은(는) 대문자이다.";
+			System.out.println(result);
+		}
+		
+		else if (ch >= 'a' && ch <= 'z') {
+			result = "입력된 문자 " + ch + "은(는) 소문자이다.";
+			System.out.println(result);
+		}
+		
+		else if (ch >= '0' && ch <= '9') {
+			result = "입력된 문자 " + ch + "은(는) 숫자이다.";
+			System.out.println(result);
+		}
+		
+		else System.out.println(result);
 		
 	}
 
