@@ -12,7 +12,49 @@ package day14.ex;
 		이클래스 타입의 변수를 출력하면 해당 원의 정보를 출력해주는 함수도 오버라이드 하세요.
 */
 public class Ex01 {
+	private int rad;
+	double area, arround;
+	
+	public Ex01() {
+		
+	}
+	
+	public Ex01(int rad) {
+		this.rad = rad;
+		setArea();
+		setArround();
+	}
+	public void setArea() {
+		area = rad * rad * Math.PI;
+	}
+	
+	public void setArround() {
+		arround = 2 * rad * Math.PI;
+	}
+	
+	public int getRad() {
+		return rad;
+	}
 
+	public void setRad(int rad) {
+		this.rad = rad;
+	}
+
+	public double getArea() {
+		return area;
+	}
+
+	public void setArea(double area) {
+		this.area = area;
+	}
+
+	public double getArround() {
+		return arround;
+	}
+
+	public void setArround(double arround) {
+		this.arround = arround;
+	}
 
 	public static void main(String[] args) {
 
