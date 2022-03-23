@@ -23,6 +23,7 @@ class Jennie extends Thread {
 	public void run() {
 		for(int i = 0; i < 1000; i++) {
 			System.out.println("Jennie가 " + (i + 1) + " 번째 노래를 합니다.");
+			
 			/*
 			 	한 곡을 노래했으니 다른 프로그램에 양보하세요
 			 		=> 즉, Runnable 상태로 전위하세요.
