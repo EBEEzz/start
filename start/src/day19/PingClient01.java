@@ -20,7 +20,7 @@ public class PingClient01 {
 		OutputStream out = null;
 		try {
 			//Socket을 만들면 자동적으로 상대방과 접속이 이루어진다.
-			socket = new Socket("172.30.1.43", 3208);
+			socket = new Socket("172.30.1.57", 7777);
 			/*
 			 	포트번호는 접속받는 프로그램에서 지정한 번호여야한다.
 			 	
