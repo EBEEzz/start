@@ -3,12 +3,30 @@
         직급이 MANAGER 인 사원의
         사원이름, 직급, 입사일, 급여, 부서이름을 조회하세요.
 */
+SELECT
+    ename 이름, job 직급, hiredate 입사일, sal 급여, dname 부서이름
+FROM
+    emp, dept
+WHERE
+    emp.deptno = dept.deptno
+    AND job = 'MANAGER'
+;
+
 
 /*
     문제 2 ]
         사원이름이 5글자인 사원들의
         사원이름, 직급, 입사일, 급여, 급여등급을 조회하세요.
 */
+SELECT
+    ename 이름, job 직급, hiredate 입사일, sal 급여, grade 급여등급
+FROM
+    emp, salgrade
+WHERE
+    sal BETWEEN losal AND hisal
+    AND ename LIKE '_____'
+;
+
 
 /*
     문제 3 ]
@@ -26,6 +44,8 @@ WHERE
     AND TO_CHAR(hiredate, 'YY') = '81'
     AND job = 'MANAGER'
 ;
+
+
 /*
     문제 4 ]
         사원들의
@@ -43,6 +63,8 @@ WHERE
     e.sal BETWEEN losal AND hisal
     AND e.mgr = s.empno(+) -- 사원의 상사번호는 상사의 사원번호입니다.
 ;
+
+
 /*
     문제 5 ]
         사원들의

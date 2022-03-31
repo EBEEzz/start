@@ -60,7 +60,7 @@
 */
 
 -- 영문색상이름 테이블
-DROP TABLE ecolor;
+--DROP TABLE ecolor;
 CREATE TABLE ecolor (
     ceno NUMBER(3) -- 영문 칼라 일련번호
         CONSTRAINT ECLR_NO_PK PRIMARY KEY,
@@ -102,7 +102,7 @@ commit;
 SELECT * FROM ecolor;
 COMMIT; -- 메모리의 작업영역에서 작업한 내용을 데이터베이스에 적용시키는 명령
 
-DROP TABLE kcolor; --  테이블 삭제명령
+--DROP TABLE kcolor; --  테이블 삭제명령
 
 CREATE TABLE kcolor (
     ckno NUMBER(3)
@@ -223,10 +223,10 @@ WHERE
 --------------------------------------------------------------------------------
 /*
     ANSI JOIN
-    ==> 질의 명령은 데이터베이스(DBMS)에 따라서 약간ㅆ기 그 분법이 달라진다.
+    ==> 질의명령은 데이터베이스(DBMS)에 따라서 약간씩 그 분법이 달라진다.
         
         ANSI 형식이란
-        미국 국립 표준 협회(ANSI)에서 공통의 질의 명령을 만들고자 해서 통일된 방식의
+        미국 국립 표준 협회(ANSI)에서 공통의 질의명령을 만들고자 해서 통일된 방식의
         명령을 만들어 놓은것.
         따라서 DBMS를 가리지 않고 실행이 된다.
         
@@ -491,7 +491,7 @@ WHERE
             emp
         WHERE
             ename = 'SMITH'   
-            )
+    )
 ;
 
 -- 사원들의 사원이름, 부서번호, 부서이름, 부서위치
@@ -540,6 +540,7 @@ SELECT
 FROM
     emp
 WHERE
+/*
     job IN (
         SELECT
             job
@@ -550,6 +551,9 @@ WHERE
             -- 질의명령의 결과는 다중값으로 발생한다.
             -- MANAGER, PRESIDENT, CLERK
     )
+*/  -- 이 조건으로 돌리게 되면 10번 부서에 속한 사람들의 직급을 골라낸 후
+    -- 해당 직급의 급여평균을 10번 부서만이 아닌 전체 사원을 기준으로 구하게된다.
+    deptno = 10
 GROUP BY
     job
 ;
@@ -651,3 +655,15 @@ WHERE
 --------------------------------------------------------------------------------
 -- 회사 평균급여보다 적게 받는 사원들의
 -- 이름, 직급, 입사일, 급여를 조회하세요.
+SELECT
+    ename 이름, job 직급, hiredate 입사일, sal 급여
+FROM
+    emp
+WHERE
+    sal < (
+        SELECT
+            AVG(sal)    
+        FROM
+            emp
+    )
+;
