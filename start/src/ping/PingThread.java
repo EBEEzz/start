@@ -46,7 +46,7 @@ public class PingThread extends Thread {
 	public void run() {
 		try {
 			// 1-2
-			server = new ServerSocket(7777);
+			server = new ServerSocket(3208);
 			System.out.println("\n서버가 개시되었습니다. (^-^*)");
 			doResponse();
 		} catch(SocketException e) {
@@ -66,8 +66,8 @@ public class PingThread extends Thread {
 			socket = server.accept();
 			
 			//1-3-b
-//			String ip = socket.getInetAddress().getHostAddress();
-//			System.out.println("\n" + ip + " - connected!");
+			String ip = socket.getInetAddress().getHostAddress();
+			System.out.println("\n" + ip + " - connected!");
 			
 			in = socket.getInputStream();
 			out = socket.getOutputStream();
@@ -76,11 +76,11 @@ public class PingThread extends Thread {
 			byte[] buff = new byte[10240];
 			int len = in.read(buff);
 			String msg = new String(buff, 0, len);
-			System.out.println("클라이언트 : " + msg);
+			System.out.println("\n클라이언트 : " + msg);
 			
 			// 1-3-d
-//			buff = new String("re ] " + msg).getBytes();
-//			out.write(buff);
+			buff = new String("re ] " + msg).getBytes();
+			out.write(buff);
 		}
 	}
 	

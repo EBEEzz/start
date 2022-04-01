@@ -5,11 +5,11 @@ import java.util.*;
 public class PingServer {
 	private boolean bool = true;
 	private PingThread ping;
-//	private Scanner sc;
+	private Scanner sc;
 	public PingServer() {
 		ping = new PingThread();
 		
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		
 		loop:
 		while(true) {
