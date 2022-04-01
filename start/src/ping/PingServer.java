@@ -1,45 +1,52 @@
 package ping;
 
-import java.io.*;
-import java.net.*;
+import java.util.*;
 
 public class PingServer {
-	ServerSocket server;
-	
+	private boolean bool = true;
+	private PingThread ping;
+//	private Scanner sc;
 	public PingServer() {
-		try {
-			server = new ServerSocket(7777);
+		ping = new PingThread();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		loop:
+		while(true) {
+			// 메세지 출력
+			System.out.println();
+			System.out.println("~ WELCOME! Ping Server ~\n"
+					+ "\n \"start\" : 서버 개시\n"
+					+ " \"quit\"  : 서버 종료\n"
+					+ "\n~ 명령을 입력하세요. ~");
+			String str = sc.nextLine();
 			
-			while(true) {
-				System.out.println("서버 접속 대기");
-				
-				//클라이언트애개 접속 허용
-				Socket socket = server.accept();
-				String ip = socket.getInetAddress().getHostAddress();
-				System.out.println("### " + ip + " ] 접속완료!");
-				
-				//데이터 입출력 준비
-				InputStream in = socket.getInputStream();
-				OutputStream out = socket.getOutputStream();
-				
-				//데이터 받고
-				byte[] buff = new byte[10240];
-				int len = in.read(buff);
-				//문자열 반환
-				String msg = new String(buff, 0, len);
-				//출력
-				System.out.println(ip + " : " + msg);
-				
-				//응답 메세지
-				//데이터 만들고
-				String remsg = msg + " - server";
-				//서버메세지 전송
-				byte[] buff1 = remsg.getBytes();
-				out.write(buff1);
+			// 2-1
+			switch(str) {
+			case "start":
+				if(bool) {
+					ping.start();
+					bool = false;
+					try {
+						Thread.sleep(200);
+					} catch(Exception e) {}
+					break;
+				}
+				// 2-2
+				System.out.println("\n!!! 이미 서버가 실행중입니다 !!!");
+				break;
+			case "quit":
+				ping.setStart(false);
+				try {
+					ping.allClose();
+				} catch (Exception e) {}
+				break loop;
 			}
-		} catch(Exception e) {
-			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		new PingServer();
 	}
 
 }
