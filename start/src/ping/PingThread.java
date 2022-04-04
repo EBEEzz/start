@@ -6,9 +6,6 @@ import java.net.*;
 public class PingThread extends Thread {
 	private boolean isStart = true;
 	private ServerSocket server;
-	private Socket socket;
-	private InputStream in;
-	private OutputStream out;
 	
 	public boolean isStart() {
 		return isStart;
@@ -22,77 +19,81 @@ public class PingThread extends Thread {
 	public void setServer(ServerSocket server) {
 		this.server = server;
 	}
-	public Socket getSocket() {
-		return socket;
-	}
-	public void setSocket(Socket socket) {
-		this.socket = socket;
-	}
-	public InputStream getIn() {
-		return in;
-	}
-	public void setIn(InputStream in) {
-		this.in = in;
-	}
-	public OutputStream getOut() {
-		return out;
-	}
-	public void setOut(OutputStream out) {
-		this.out = out;
-	}
 	
-	// 1-1
 	@Override
 	public void run() {
 		try {
-			// 1-2
-			server = new ServerSocket(3208);
-			System.out.println("\n서버가 개시되었습니다. (^-^*)");
+			server = new ServerSocket(7777);
+			System.out.println();
+			System.out.println("◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼");
+			System.out.println("***  Server  Start  ***");
+			System.out.println("◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼◼");
 			doResponse();
-		} catch(SocketException e) {
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			allClose();
-			System.out.println();
-			System.out.println("\n서버가 종료되었습니다. (--)(__)");
+			close(server);
 		}
+
 	}
 	
 	// 클라이언트가 접속하면 메세지 받아서 응답해주는 함수
-	public void doResponse() throws SocketException, Exception {
+	public void doResponse() {
 		while(isStart) {
-			//1-3-a
-			socket = server.accept();
+			Socket socket = null;
+			InputStream in = null;
+			OutputStream out = null;
 			
-			//1-3-b
-			String ip = socket.getInetAddress().getHostAddress();
-			System.out.println("\n" + ip + " - connected!");
-			
-			in = socket.getInputStream();
-			out = socket.getOutputStream();
-			
-			// 1-3-c
-			byte[] buff = new byte[10240];
-			int len = in.read(buff);
-			String msg = new String(buff, 0, len);
-			System.out.println("\n클라이언트 : " + msg);
-			
-			// 1-3-d
-			buff = new String("re ] " + msg).getBytes();
-			out.write(buff);
+			try {
+				socket = server.accept();
+				
+				String ip = socket.getInetAddress().getHostAddress();
+				
+				byte[] buff = new byte[10240];
+				in = socket.getInputStream();
+				out = socket.getOutputStream();
+				
+				int len = in.read(buff);
+				String msg = new String(buff, 0, len);
+				
+				System.out.println("︎****************\n◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎");
+				System.out.println();
+				System.out.println("-----------------------------------------------------------------------");
+				System.out.println(ip + " - connected!");
+				System.out.println(ip + " : " + msg);
+				System.out.println("-----------------------------------------------------------------------");
+				System.out.println();
+				
+				execMsg();
+				
+				buff = new String("re ] " + msg).getBytes();
+				out.write(buff);
+			} catch(SocketException e) {
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(out);
+				close(in);
+				close(socket);
+			}
 		}
 	}
 	
-	// 열려있는 자원 모두 반환해주는 함수
-	public void allClose() {
-		close(out);
-		close(in);
-		close(socket);
-		close(server);
+	// 메인 명령 입력함수
+	public void execMsg() {
+		System.out.println("◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎");
+		System.out.println("*** 핑서버 프로그램 ***");
+		System.out.println("-----------------------");
+		if(!this.isAlive()) {
+			System.out.println("서버시작 : start");
+			System.out.println("프로그램 종료 : quit");
+		} else {
+			System.out.println("서버중단 : quit");
+		}
+		System.out.println("명령을 입력하세요.");
+		System.out.println("=======================");
+		System.out.print("입력 : ");
 	}
-	
-	// 1-4
 	// 사용하지 않는 자원 반환해주는 함수
 	public void close(Object o) {
 		try {
