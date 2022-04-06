@@ -46,6 +46,9 @@ DROP TABLE tmp;
     생성하는 순서는 참조해주는 테이블부터 생성해야한다.
 */
 -- 아바타 테이블
+-- 테이블 삭제
+DROP TABLE avatar CASCADE CONSTRAINTS;
+
 CREATE TABLE avatar(
     ano NUMBER(2),
     aname VARCHAR2(15 CHAR),
@@ -53,6 +56,9 @@ CREATE TABLE avatar(
     savename VARCHAR2(50 CHAR),
     dir VARCHAR2(100 CHAR),
     len NUMBER,
+    gen CHAR(1)
+        CONSTRAINT AVT_GEN_CK CHECK(gen IN ('F', 'M', 'N'))
+        CONSTRAINT AVT_GEN_NN NOT NULL,
     adate DATE DEFAULT sysdate,
     isshow CHAR(1) DEFAULT 'Y',
     CONSTRAINT AVT_NO_PK PRIMARY KEY(ano),
@@ -263,7 +269,7 @@ CREATE TABLE tmp(
                 
             4. 휴지통의 테이블 복구하기
             
-                flashback table 테이블이름 
+                flashback table 테이블이름 to before drop
                 
 */
 
