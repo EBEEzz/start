@@ -116,26 +116,29 @@ public class JdbcTest01 {
 		// 작업 순서
 		// 입력받을 준비
 		Scanner sc = new Scanner(System.in);
-		// 메세지 출력하고
-		System.out.print("부서번호로 조회 : dno\n직급으로 조회 : job\n모든사원조회 : all\n명령 입력 : ");
-		String str = sc.nextLine();
 		
-		switch(str) {
-		case "dno":
-			getDnoInfo(sc);
-			break;
-		case "job":
-			getJobInfo(sc);
-			break;
-		case "all":
-			getAll();
-			break;
-		case "exit":
-			System.out.println("*** 프로그램을 종료합니다. ***");
-			break;
+		loop:
+		while(true) {
+		// 메세지 출력하고
+			System.out.print("부서번호로 조회 : dno\n직급으로 조회 : job\n모든사원조회 : all\n명령 입력 : ");
+			String str = sc.nextLine();
+			
+			switch(str) {
+			case "dno":
+				getDnoInfo(sc);
+				break;
+			case "job":
+				getJobInfo(sc);
+				break;
+			case "all":
+				getAll();
+				break;
+			case "exit":
+				System.out.println("*** 프로그램을 종료합니다. ***");
+				break loop;
+			}
 		}
 	}
-	
 	//사원들의 모든 직급을 조회해서 출력해주는 함수
 	public void getJobList() {
 		//할일
@@ -262,7 +265,7 @@ public class JdbcTest01 {
 			//명령전달도구 만들고
 			// => 위에서 가져온 질의명령에는 ? 로 되어있는 부분을 데이터로 채워야하는 불완전한 질의명령이다.
 			//	이때 사용하는 명령전달 도구는 PreparedStatement 를 사용한다.
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
 			//질의명령을 완성하고
 			pstmt.setInt(1, no);
