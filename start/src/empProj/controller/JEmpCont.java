@@ -58,6 +58,7 @@ public class JEmpCont {
 		
 	// 제니 데이터 입력 전용 함수
 	public void addJennie() {
+		//제니 데이터를 추가해보자. 이름, 직급, 부서번호
 		String name = "JENNIE";
 		String job = "MANAGER";
 		int dno = 40;
@@ -78,13 +79,14 @@ public class JEmpCont {
 	}
 		
 	// 추가된 사원의 정보를 조회해서 출력하는 함수
-	public void addLast() {
-	//데이터 받고
-	EmpVO evo = jDao.getLast();
-	System.out.println();
-	System.out.println("*** 마지막 입사한 사원정보 ***");
-	System.out.printf("사원번호 : %4d\n사원이름 : %10s\n직급 : %10s\n입사일 : %18s\n부서번호 : %2d\n",
-						evo.getEno(), evo.getEname(), evo.getJob(), evo.getSdate(), evo.getDno());
+	public void printLast() {
+		//데이터 받고
+		EmpVO evo = jDao.getLast();
+		System.out.println();
+		System.out.println("*** 마지막 입사한 사원정보 ***");
+		System.out.printf("사원번호 : %4d\n사원이름 : %10s\n직급 : %10s\n입사일 : %18s\n부서번호 : %2d\n",
+							evo.getEno(), evo.getEname(), evo.getJob(), evo.getSdate(), evo.getDno()
+							);
 	}
 	
 

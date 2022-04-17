@@ -113,28 +113,40 @@ public class JEmpDao {
 		return cnt;
 	}
 	
+	//가장 최근 입사한 사원의 정보 조회 전담 처리함수
 	public EmpVO getLast() {
+		//할일
+		//반환값 변수
 		EmpVO eVO = new EmpVO();
 		
+		//커넥션 꺼내오고
 		con = db.getCON();
-		
+		//질의명령 가져오고
 		String sql = jSQL.getSQL(jSQL.SEL_LAST);
-		
+		//명령전달도구 가져오고
 		stmt = db.getSTMT(con);
 		try {
+			//질의명령 보내고 결과 받고
 			rs = stmt.executeQuery(sql);
-			
+			//꺼내서 VO에 채워주고
+			//가상레코드포인터 한줄 내리고
 			rs.next();
+			//데이터 꺼내서 VO에 담고
+			int eno = rs.getInt("empno");
+			String name = rs.getString("ename");
+			String job = rs.getString("job");
+			Date hdate = rs.getDate("hiredate");
+			Time htime = rs.getTime("hiredate");
+			int dno = rs.getInt("deptno");
 			
-			eVO.setEno(rs.getInt("empno"));
-			eVO.setEname(rs.getString("ename"));
-			eVO.setJob(rs.getString("job"));
-			eVO.setHdate(rs.getDate("hiredate"));
-			eVO.setHtime(rs.getTime("hiredate"));
+			//꺼낸 데이터 VO에 담고
+			eVO.setEno(eno);
+			eVO.setEname(name);
+			eVO.setJob(job);
+			eVO.setHdate(hdate);
+			eVO.setHtime(htime);
 			eVO.setSdate();
-			eVO.setDno(rs.getInt("deptno"));
-			
-			
+			eVO.setDno(dno);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -142,6 +154,7 @@ public class JEmpDao {
 			db.close(stmt);
 			db.close(con);
 		}
+		//데이터 반환하고
 		return eVO;
 	}
 	
