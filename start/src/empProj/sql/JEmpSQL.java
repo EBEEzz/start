@@ -3,9 +3,9 @@ package empProj.sql;
 /**
  * 이 클래스는 JEmp  테이블에 관련되 질의명령을 기억하고 있다가
  * 누군가 특정질의명령을 달라고 요구하면 해당질의명령을 반환해주는 기능을 가진 클래스
- *  ");author 전은석
- *  ");since	2022.04.13
- *  ");version	v.1.0
+ *  @author 전은석
+ *  @since	2022.04.13
+ *  @version	v.1.0
  *
  */
 public class JEmpSQL {
