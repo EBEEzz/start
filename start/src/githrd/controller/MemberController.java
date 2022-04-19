@@ -28,15 +28,15 @@ public class MemberController {
 	}
 	
 	// 회원번호와 아이디를 조회해서 출력해주는 함수
-	public void printAll() {
-		MemberVO mvo = mDao.getAll();
-		System.out.println();
-		System.out.println("*** 사원 정보 ***");
-		System.out.printf("회원번호 : %4d\n", mvo.getMno());
-	}
+	
 	
 	// 회원번호(1001)를 입력하면 해당 회원의 정보를 출력해주는 함수
-	
+	public void mnoInfoPrint() {
+		MemberVO mvo = mDao.getAll();
+		System.out.println();
+		System.out.println("*** 회원 정보 ***");
+		System.out.printf("회원번호 : %4d\n", mvo.getMno());
+	}
 	
 	// 아이디를 입력해서 해당 회원의 전화번호를 수정(010-1212-1212)해주는 함수
 	
