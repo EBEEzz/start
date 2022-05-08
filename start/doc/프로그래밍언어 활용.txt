@@ -1,0 +1,93 @@
+# JAVA_안은비
+
+문제1)
+	byte, short, int, long, float, double, char, boolean
+
+문제2)
+	int num = 75000;
+
+문제3)
+	1) a = 12, b = 23
+	2) a = 12, b = 22
+	3) a = 12, b = 21
+
+문제4)
+	private => 자기자신의 클래스
+	생략 => 같은 패키지 소속 클래스
+	protected => 같은 패키지 소속 클래스, 상속 하위 클래스스
+	public => 모든 곳
+
+문제5)
+	정상적이지 않다.
+	#은 클래스 이름에 사용가능한 특수문자가 아니다.
+	private은 class를 만들 때 쓸만한 접근지정자가 아니다.
+
+문제6)
+	
+public class FiveDan {
+
+	public static void main(String[] args) {
+		int cnt = 1;
+		do {
+			int num = (5 * cnt);
+			System.out.println("5 * " + cnt + " = " + num);
+		} while(cnt++ < 9);
+	}
+}
+
+문제7)
+
+public class Member {
+	private int mno;
+	private String name, id;
+}
+
+문제8)
+	
+
+
+
+#2
+문제1)
+	long, int, short, byte
+
+문제2)
+	double val = 3.14;
+
+문제3)
+	10
+
+문제4)
+public static void main(String[] args) {
+	char[] alpha = new char[10];
+	for (int i = 0; i < 10; i++) {
+		alpha[i] = (char)(i + 'A');
+		System.out.println(alpha[i] + ", ");
+	}
+}
+
+문제5)
+	B, C, D, Z
+
+문제6)
+
+public class Class02 {
+	String name;
+	int no;
+}
+
+문제7)
+
+public class Album {
+	private int cdno;
+	private String cdname, singer;
+}
+
+문제8)
+	
+
+
+
+
+
+
